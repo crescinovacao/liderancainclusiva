@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Liderança inclusiva e resultado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--brown:#210000;--cream:#f5ecea;--cream2:#faf6f5;--paper:#fffdfc;--amber:#ffb93e;--line:#e4d8d5;--muted:#6f5d5a;--soft:#cfc4c1}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Hanken Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--cream2);color:var(--brown);line-height:1.55;border-top:6px solid var(--brown);min-height:100vh;font-size:16px}
+h1,h2,h3,.brand{font-family:'Bricolage Grotesque',Georgia,serif;font-weight:800;letter-spacing:-.01em}
+button{font-family:inherit;cursor:pointer}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 24px;background:var(--brown);color:var(--cream);flex-wrap:wrap}
+.brand{font-size:20px;line-height:1.05}
+.brand small{display:block;font-family:'Hanken Grotesk',sans-serif;font-weight:500;font-size:11px;opacity:.8;letter-spacing:.02em}
+.top .tag{font-size:13px;opacity:.9}
+.wrap{max-width:900px;margin:0 auto;padding:28px 20px 60px}
+.wrap.wide{max-width:1180px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:18px}
+.card.dark{background:var(--brown);color:var(--cream);border-color:var(--brown)}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+h1{font-size:30px;line-height:1.15;margin-bottom:10px}
+h2{font-size:22px;line-height:1.2;margin-bottom:10px}
+h3{font-size:17px;margin-bottom:6px}
+p{margin-bottom:10px}
+.muted{color:var(--muted)}
+.small{font-size:13.5px}
+.btn{background:var(--brown);color:var(--cream);border:2px solid var(--brown);border-radius:10px;padding:12px 22px;font-weight:600;font-size:15px;transition:background .25s ease,color .25s ease}
+.btn:hover:not(:disabled){background:var(--cream);color:var(--brown)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--brown)}
+.btn.ghost:hover:not(:disabled){background:var(--brown);color:var(--cream)}
+.btn.sm{padding:7px 14px;font-size:13px;border-radius:8px}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+input[type=text],textarea{width:100%;border:1.5px solid var(--soft);border-radius:10px;padding:12px 14px;font:inherit;color:var(--brown);background:#fff}
+input[type=text]:focus,textarea:focus{outline:none;border-color:var(--brown)}
+textarea{min-height:92px;resize:vertical}
+label.lb{display:block;font-weight:600;margin:14px 0 6px}
+.steps{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.steps span{font-size:12.5px;font-weight:600;padding:5px 12px;border-radius:99px;border:1.5px solid var(--soft);color:var(--muted)}
+.steps span.on{background:var(--brown);border-color:var(--brown);color:var(--cream)}
+.steps span.done{border-color:var(--brown);color:var(--brown)}
+.path{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.chip{font-size:12.5px;border:1.5px solid var(--brown);border-radius:99px;padding:3px 12px;background:#fff}
+.scene-text p{font-size:17px}
+.callout{border-left:4px solid var(--amber);background:var(--cream);padding:12px 16px;border-radius:0 10px 10px 0;margin:14px 0}
+.opt{display:block;width:100%;text-align:left;background:#fff;border:2px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:border-color .2s ease}
+.opt:hover{border-color:var(--soft)}
+.opt.sel{border-color:var(--brown);background:var(--cream2);box-shadow:inset 5px 0 0 var(--amber)}
+.opt b{display:block;font-size:16px}
+.opt span{font-size:14px;color:var(--muted)}
+.opt .k{display:inline-block;font-family:'Bricolage Grotesque',serif;font-weight:800;color:var(--brown);margin-right:6px}
+.layers{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.layer{background:#fff;border:1px solid var(--line);border-top:4px solid var(--brown);border-radius:12px;padding:16px}
+.prev-imp{margin-top:14px}.prev-imp h3{margin-bottom:8px}
+.ditar{display:flex;align-items:center;gap:12px;margin-top:8px;flex-wrap:wrap}.mic.rec{background:var(--brown);color:#fff;border-color:var(--brown)}
+.layer .lt{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.voz{font-style:italic;border-left:3px solid var(--amber);padding-left:10px;margin-top:8px;font-size:14.5px}
+.treebox{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px}
+.treebox svg{min-width:720px;width:100%;height:auto;display:block}
+.hier{border:1px solid var(--line);border-radius:12px;padding:12px 16px;background:var(--cream2);margin:12px 0}.hier ul{margin:6px 0 0;padding-left:18px}.hier li{margin:4px 0}
+.dtab{margin-top:18px;border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--cream2)}.dtab h3{margin-bottom:8px}.dscroll{overflow-x:auto}.dtab table{width:100%;border-collapse:collapse;font-size:15px}.dtab th,.dtab td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left;font-weight:500}.dtab thead th{font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:600}.dtab td.num{font-weight:700;white-space:nowrap}.dtab tbody th{font-weight:500}.prog{display:grid;gap:8px;margin-top:10px}.pg{border:1px solid var(--line);border-radius:10px;padding:8px 12px;background:#fff;display:flex;flex-direction:column}.pg.ok{border-color:var(--brown)}
+.nodes-list details{border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-bottom:8px;background:#fff}
+.nodes-list summary{font-weight:600;cursor:pointer}
+.bloco{border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:16px;background:#fff}
+.bloco .n{font-family:'Bricolage Grotesque',serif;font-weight:800;font-size:13px;color:var(--muted)}
+.q{margin:8px 0}
+.travar{font-size:14px;color:var(--muted);margin:8px 0}
+.evid{background:var(--cream);border-radius:10px;padding:12px 14px;font-size:14px;margin:10px 0}
+.evid li{margin-left:18px;margin-bottom:4px}
+.home{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.err{color:#9b1c1c;font-size:14px;margin-top:6px;min-height:20px}
+.pill{display:inline-block;font-size:12.5px;font-weight:600;border-radius:99px;padding:3px 12px;border:1.5px solid var(--brown)}
+.pill.fill{background:var(--brown);color:var(--cream)}
+.pill.amb{background:var(--amber);border-color:var(--amber);color:var(--brown)}
+.tabs{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.tabs button{border:2px solid var(--brown);background:transparent;color:var(--brown);border-radius:99px;padding:7px 18px;font-weight:600;font-size:14px}
+.tabs button.on{background:var(--brown);color:var(--cream)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.stat b{font-family:'Bricolage Grotesque',serif;font-size:30px;display:block;line-height:1}
+.stat span{font-size:13px;color:var(--muted)}
+.ggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.gcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px}
+.gcard header{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;margin-bottom:8px}
+.gcard h3{margin:0}
+.gcard .treebox{padding:4px;border:none;background:var(--cream2)}
+.gcard .treebox svg{min-width:0}
+.bar{height:10px;border-radius:6px;background:var(--cream);overflow:hidden;margin:4px 0 12px}
+.bar i{display:block;height:100%;background:var(--brown)}
+.bars .lbl{display:flex;justify-content:space-between;font-size:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+ul.clean{list-style:none}
+ul.clean li{padding:10px 0;border-bottom:1px solid var(--line)}
+ul.clean li:last-child{border-bottom:none}
+.quote{border-left:3px solid var(--amber);padding:4px 0 4px 12px;margin:8px 0;font-style:italic}
+.qrbox svg{max-width:100%;height:auto;border:1px solid var(--line);border-radius:12px}
+.tools{margin-top:30px;padding-top:16px;border-top:1px dashed var(--soft)}
+.notice{font-size:13px;color:var(--muted)}
+.spinner{display:inline-block;width:16px;height:16px;border:3px solid var(--soft);border-top-color:var(--brown);border-radius:50%;animation:sp 1s linear infinite;vertical-align:-3px;margin-right:8px}
+@keyframes sp{to{transform:rotate(360deg)}}
+.lista{margin:0 0 12px 22px}.lista li{margin:6px 0;font-size:17px}
+.dtab.solo{margin-top:12px}.dtab.solo th[scope=row]{font-weight:600}
+.chartbox{margin-top:16px;border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--cream2)}.chartbox svg{width:100%;height:auto;display:block}
+.destaque{background:var(--brown);color:var(--cream);border:none;padding:32px 28px;border-radius:14px;box-shadow:0 0 0 4px var(--amber)}.destaque p{font-size:17px;max-width:620px}
+.btn.big{font-size:19px;padding:17px 34px;margin-top:6px}.btn.amb{background:var(--amber);border-color:var(--amber);color:var(--brown)}.btn.amb:hover:not(:disabled){background:var(--cream);color:var(--brown)}
+.dtab.solo+p,.chartbox+p{margin-top:16px}
+.resp{white-space:pre-wrap;font-size:16.5px;margin:6px 0 0}
+@media (max-width:760px){
+ .top{padding:12px 14px}.wrap{padding:18px 12px 48px}.card{padding:18px}
+ h1{font-size:25px}.layers,.home,.two{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}
+ .ggrid{grid-template-columns:1fr}
+}
+@media print{.top,.tabs,.tools,.noprint{display:none!important}body{border:none}}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="brand">crescimentum<small>cegos group</small></div>
+  <div class="tag" id="toptag">Liderança inclusiva e resultado</div>
+</div>
+<div id="app"></div>
+
+<script>
+/* =====================================================================
+   LIDERANÇA INCLUSIVA E RESULTADO | versão base
+   Rotas: #/p (participante), #/f (facilitação), sem hash = escolha.
+   Camada de dados (Store) e camada de IA (AI) são trocáveis:
+   hoje usam localStorage + BroadcastChannel e regras simples.
+   ===================================================================== */
+
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const norm=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+const L=['A','B','C'];
+const oid=(scene,l)=>scene===1?l:scene+l;           // 'A', '2B', '3C'
+const juntar=a=>a.length<2?(a[0]||''):a.slice(0,-1).join(', ')+' e '+a[a.length-1];
+
+/* ------------------------- CONTEÚDO (alinhado ao documento "Liderança inclusiva e resultado: as três cenas") -------------------------
+   Duas cenas independentes, em empresa fictícia, uma depois da outra. Em cada uma, o grupo escreve (ou dita) o que Marcos faria e por quê. */
+const PERGUNTA='O que você, no lugar de Marcos, faria?';
+const CENAS=[null,
+ {titulo:'Cena 1 · A nota que fecha na sexta',blocos:[
+  {tipo:'p',t:'Quinta, 17h40. A calibração da AVD é amanhã, às 9h, e a liderança sênior quer as notas fechadas até sexta, porque o bônus do semestre depende delas. Marcos, que lidera a área Soluções Digitais, abre o painel de casa, com o jantar esfriando ao lado do computador.'},
+  {tipo:'p',t:'Das 520 pessoas da área, 19% ficaram em Ajustando a rota, 60% em Na rota, 19% em Brilhou e 2% em Voando alto. A distribuição é parecida com a do ciclo passado. O RH avisou que a pauta é longa: são 41 pessoas para calibrar, e apenas 20 serão analisadas na reunião de calibração. Várias lideranças de equipe já mandaram mensagem pedindo para só “confirmar”.'},
+  {tipo:'p',t:'Ao descer pelo painel, três coisas chamam a atenção de Marcos:'},
+  {tipo:'ul',itens:[
+   'A equipe de Rafael, que entrega todo trimestre e que Marcos conhece há oito anos, não tem ninguém em Ajustando a rota e tem cinco pessoas em Brilhou. Rafael escreveu: “Já revisei tudo duas vezes. Se eu tiver que justificar nota por nota, perco a semana de fechamento.”',
+   'A equipe de Priscila, mais nova e com o projeto mais difícil da área, tem nove de catorze pessoas em Ajustando a rota. Priscila não pediu nada.',
+   'As justificativas de quem ficou em Brilhou têm três ou quatro linhas, com exemplos, como “assume o que ninguém pediu”. As de quem ficou em Ajustando a rota têm meia linha: “precisa de mais autonomia”, “perfil mais júnior”, “comunicação”.']},
+  {tipo:'p',t:'Na caixa de entrada, há também uma mensagem de Letícia, analista com dois anos de casa, cuja proposta de nota é Na rota. Ela pediu ontem uma conversa sobre carreira. Marcos ainda não respondeu.'},
+  {tipo:'p',t:'Marcos não consegue reabrir todas as notas. Reabrir muitas significa chegar à reunião contra o relógio, contra a pauta e contra pessoas de quem depende para entregar o trimestre. Confirmar tudo é o caminho mais rápido, e é o que o ciclo sempre fez.'}
+ ]},
+ {titulo:'Cena 2 · A lista que já veio pronta',blocos:[
+  {tipo:'p',t:'Quarta, 16h. Comitê de reconhecimento do semestre, na sala do fundo, com as lideranças da área em volta da mesa. Marcos conduz. Há verba para 40 reconhecimentos, entre méritos e promoções, e as lideranças de equipe enviaram 62 indicações. A reunião tem uma hora, e a liderança sênior espera a lista aprovada até o fim do dia.'},
+  {tipo:'p',t:'O RH projeta o histórico do último ano na parede:'},
+  {tipo:'tabela',cab:['Grupo','Reconhecidas no último ano','Presença nas 62 indicações','Presença na área'],linhas:[['Pessoas negras','28,6%','35,6%','31%'],['Pessoas não negras','71,4%','65,4%','69%'],['Mulheres','47,1%','40,5%','47%'],['Homens','61,3%','59,5%','53%']]},
+  {tipo:'p',t:'Marcos folheia as indicações. Rafael indicou nove pessoas, todas com projetos sólidos e justificativas de um parágrafo: “tem visão de dono”, “lidera sem cargo”. Priscila indicou duas, com uma linha cada, e disse ao entrar: “Não quis competir com ninguém.” Uma terceira liderança não indicou ninguém: “Esse semestre foi de apagar incêndio.”'},
+  {tipo:'p',t:'Marcos viu alguns ótimos projetos na equipe dessas pessoas e não as viu refletidas na lista de reconhecimentos, porém, cada nome novo tira um nome já indicado, de uma liderança que está na mesa. Aprovar como está é rápido e confirma o histórico. E não há tempo para checar tudo.'}
+ ]}
+];
+const cena=n=>CENAS[n];
+const NOME_CENA=n=>CENAS[n].titulo;
+/* gráfico da cena 2: turnover por gênero e raça (voluntário + involuntário, em pontos percentuais) */
+const GRAFICO={titulo:'Turnover por gênero e raça nos últimos 12 meses',sub:'172 saídas em 520 pessoas. Cada barra soma saídas voluntárias e involuntárias.',media:33.1,
+ barras:[{n:'Mulheres',v:25.0,i:4.9},{n:'Homens',v:26.1,i:9.8},{n:'Pessoas negras',v:33.8,i:11.9},{n:'Pessoas não negras',v:21.9,i:5.6}]};
+const REFLEXAO=[
+ {t:'O que vocês decidiram e por quê',qs:['Ao decidir, vocês pensaram em inclusão em algum momento? E em raça e gênero?','Que crenças sobre o time, o resultado e o mérito estavam por trás das decisões, como “é só desempenho” ou “a regra é a mesma para todos”?']},
+ {t:'O que vocês não viram',qs:['Qual consequência vocês não imaginaram? O que na forma de olhar as cenas explica não terem visto?','Na cena 2, os números mostravam diferenças entre pessoas negras e não negras e entre mulheres e homens. O que vocês fizeram com elas?']},
+ {t:'Afinidade e calibração',qs:['Numa reunião de calibração da sua área, de quem vocês falam com mais facilidade e em quem apostam? O que essas pessoas têm em comum com vocês?','Quando o erro de alguém aparece numa calibração, quanto peso ele tem? O mesmo erro pesaria igual para qualquer pessoa da equipe?']},
+ {t:'O custo para o resultado',qs:['Qual foi o custo, para o resultado, de decidir só pela média ou pela lente universal? Em que cena ele apareceu?','O que muda se a inclusão for tratada como parte do resultado, e não como um extra? Como a decisão de vocês está considerando diversidade e inclusão?']}
+];
+
+/* ------------------------- CAMADA DE DADOS (trocável por Supabase) ------------------------- */
+const Store=(()=>{
+ const KEY='li-ifood-sim-v2';let mem=null;const subs=[];
+ const bc=('BroadcastChannel' in window)?new BroadcastChannel('li-ifood-sim'):null;
+ const vazio=()=>({sessions:{},groups:{}});
+ function get(){try{const r=localStorage.getItem(KEY);if(r){mem=JSON.parse(r);}}catch(e){}return mem||(mem=vazio());}
+ function save(s){mem=s;try{localStorage.setItem(KEY,JSON.stringify(s));}catch(e){}if(bc)bc.postMessage(1);subs.forEach(f=>f());}
+ if(bc)bc.onmessage=()=>subs.forEach(f=>f());
+ const novoCodigo=s=>{const A='ABCDEFGHJKMNPQRSTUVWXYZ23456789';let c;
+  do{c=Array.from({length:6},()=>A[Math.floor(Math.random()*A.length)]).join('');}while(Object.values(s.sessions).some(x=>x.code===c));return c;};
+ return{
+  get,subscribe:f=>subs.push(f),
+  update(fn){const s=get();fn(s);save(s);},
+  patch(id,fn){this.update(s=>{if(s.groups[id]){fn(s.groups[id]);s.groups[id].updatedAt=Date.now();}});},
+  patchSession(id,fn){this.update(s=>{if(s.sessions[id])fn(s.sessions[id]);});},
+  createSession(nome){let id=null;this.update(s=>{id='s'+Date.now().toString(36);
+   s.sessions[id]={id,code:novoCodigo(s),name:nome,open:true,reflectionOpen:false,room:null,createdAt:Date.now()};});return id;},
+  deleteSession(id){this.update(s=>{delete s.sessions[id];Object.keys(s.groups).forEach(k=>{if(s.groups[k].sessionId===id)delete s.groups[k];});});},
+  clearGroups(id){this.update(s=>{Object.keys(s.groups).forEach(k=>{if(s.groups[k].sessionId===id)delete s.groups[k];});if(s.sessions[id])s.sessions[id].room=null;});},
+  sessionByCode(code){return Object.values(this.get().sessions).find(x=>x.code===String(code||'').toUpperCase());},
+  joinGroup(sid,nome){let id=null;this.update(s=>{const f=Object.values(s.groups).find(g=>g.sessionId===sid&&norm(g.name)===norm(nome));
+   if(f){id=f.id;return;}if(!s.sessions[sid]||!s.sessions[sid].open)return;
+   id='g'+Date.now().toString(36)+Math.random().toString(36).slice(2,5);
+   s.groups[id]={id,sessionId:sid,name:nome,stage:'intro',answers:[],refl:null,ai:null,finished:false,createdAt:Date.now(),stageAt:Date.now(),updatedAt:Date.now()};});return id;},
+  reset(){save(vazio());}
+ };
+})();
+
+/* ------------------------- DADOS DO BRASIL (2023 a 2025), exibidos na leitura do grupo ------------------------- */
+const DADOS={
+ titulo:'O que os dados do Brasil mostram',
+ intro:'Dados recentes, de fontes brasileiras, para ler as decisões de vocês ao lado do que a experiência mostrou. Eles descrevem desigualdades no mercado de trabalho e não provam, sozinhos, o que acontece em uma empresa específica.',
+ itens:[
+  {t:'Quem chega à liderança',d:'Em 2024, 5,3% das pessoas brancas ocupadas eram diretoras ou gerentes, contra 2,1% das pessoas pretas ou pardas, que são cerca de 56% das pessoas ocupadas.',f:'IBGE, Síntese de Indicadores Sociais 2025 (dados de 2024), Tabela 5. O percentual de pessoas ocupadas é calculado a partir da própria tabela.'},
+  {t:'Quanto ganha quem chega',d:'Entre diretoras e gerentes, o rendimento médio mensal foi de R$ 9.831 para pessoas brancas e de R$ 6.446 para pretas ou pardas, cerca de 34% a menos. Na média de todas as ocupações, a hora trabalhada de pessoas brancas rende 64% a mais.',f:'IBGE, Síntese de Indicadores Sociais 2025 (dados de 2024). O percentual de 34% é calculado a partir dos valores publicados.'},
+  {t:'Quem ocupa as decisões nas grandes empresas',d:'Nas 1.100 maiores empresas do país, a diretoria é formada por 60,8% de homens brancos, 23,5% de mulheres brancas, 10% de homens negros e 3,4% de mulheres negras. Nos conselhos de administração, 93,8% das pessoas são brancas.',f:'Instituto Ethos, Perfil social, racial e de gênero das 1.100 maiores empresas do Brasil, edição 2023-2024, divulgada em 18/09/2024.'},
+  {t:'O que a comparação entre pessoas semelhantes mostra',d:'Entre pessoas de 25 a 65 anos, o salário médio de trabalhadores negros é 42% menor (R$ 2.858 contra R$ 4.956). Mesmo comparando pessoas com escolaridade, experiência, região, ocupação, vínculo e setor semelhantes, o estudo atribui à discriminação R$ 328 a menos por mês para homens negros e R$ 296 para mulheres negras.',f:'Insper, Núcleo de Estudos Raciais, O custo salarial da desigualdade racial (agosto de 2024). Os próprios autores indicam que a estimativa depende de uma suposição forte: a de que fatores não observados não se relacionam com a raça.'},
+  {t:'Onde a trajetória costuma travar',d:'Em entrevistas em profundidade com 20 agentes públicos de alto escalão, o relatório conclui que as ações afirmativas garantem o acesso ao funcionalismo, mas não a mobilidade na carreira.',f:'Afro-Cebrap, Lideranças Negras no Estado Brasileiro (1995-2024), março de 2025. Estudo qualitativo, restrito ao setor público federal.'}
+ ],
+ fim:'Dados do Brasil, de 2024 e 2025. Ao fechar a experiência, a Joana conecta cada um ao que vocês viram nas cenas.'
+};
+function dadosHTML(deb){
+ return `<div class="card"><div class="eyebrow">${deb?'Para o debriefing':'Dados do Brasil'}</div><h2>${esc(DADOS.titulo)}</h2><p class="muted">${esc(DADOS.intro)}</p>
+ ${DADOS.itens.map(x=>`<div class="bloco"><h3>${esc(x.t)}</h3><p>${esc(x.d)}</p><p class="small muted">Fonte: ${esc(x.f)}</p></div>`).join('')}
+ ${deb?'':`<p class="small muted">${esc(DADOS.fim)}</p>`}</div>`;
+}
+
+/* ------------------------- CAMADA DE IA (hoje: regras simples sobre o texto livre; trocar por chamada a um modelo) ------------------------- */
+const DRV={
+ velocidade:{re:/rapid|urgen|prazo|agil|logo|tempo/,l:'rapidez para fechar a questão'},
+ resultado:{re:/\bmetas?\b|resultado|indicador|numero|produtiv|performance|entrega|bonus|verba/,l:'o indicador, a meta e a entrega'},
+ pessoas:{re:/pessoa|perfil|engaj|desenvolv|conversa|\brh\b|escut|acolh|carreira|leticia|priscila/,l:'a leitura sobre as pessoas e as equipes'},
+ causa:{re:/causa|dado|diagnost|analis|entender|investig|levantament|criteri|evidenc|recorte|raiz|compar/,l:'entender a causa e olhar os dados antes de agir'},
+ custo:{re:/custo|orcament|verba|caro|recurso|invest/,l:'custo e esforço'},
+ igualdade:{re:/igual|justo|merit|todos|todas|mesma regra|regra|democrat|confirm/,l:'tratar todas as pessoas com a mesma régua'},
+ politica:{re:/politic|desgaste|confianc|relacion|gerente|gestor|lideranca|rafael/,l:'a relação com as lideranças e o desgaste político'},
+ raca:{re:/\braca\b|racial|negr|diversidade|inclus|equidade|genero|mulher/,l:'a leitura de raça, gênero e inclusão'}
+};
+const drivers=t=>{const n=norm(t);return Object.keys(DRV).filter(k=>DRV[k].re.test(n));};
+const delay=ms=>new Promise(r=>setTimeout(r,ms));
+/* o que cada cena pede para ser olhado, e o que costuma ficar fora da vista */
+const LENTE={
+ 1:{re:/evidenc|criteri|justificativ|compar|reabr|caso a caso|rafael|priscila|leticia|meia linha|amostr/,
+  sim:'Vocês olharam para o que está por trás das notas. O que costuma ficar fora da vista é o depois: reabrir algumas notas só muda o ciclo se os critérios ficarem combinados e as diferenças entre equipes forem acompanhadas.',
+  nao:'Pode não estar à vista o que o painel mostrava: a equipe de Priscila com nove de catorze pessoas em Ajustando a rota, as justificativas de meia linha e a conversa de carreira que Letícia pediu. Fechar as notas como vieram repete a distribuição de sempre.'},
+ 2:{re:/ficou de fora|nao indicad|criteri|busca ativa|autoindic|negr|raca|historico|recorte|invisivel|quem nao/,
+  sim:'Vocês olharam além da lista pronta. O que costuma ficar fora da vista é o custo disso: cada nome novo tira um nome já indicado, e é preciso explicar a decisão a quem saiu e a quem entrou.',
+  nao:'Pode não estar à vista o que a tabela do RH mostrava: pessoas negras e mulheres com presença menor entre as reconhecidas. Aprovar a lista como veio confirma o histórico, e quem já aparece para as lideranças segue sendo lembrado.'}
+};
+const respTxt=(g,i)=>((g.answers||[])[i]||{}).txt||'';
+const AI={
+ /* contrato: recebe o registro do grupo (respostas das cenas e reflexão) e devolve {porCena, sintese} */
+ async analyzeGroup(g){
+  await delay(1100);
+  const porCena=[1,2].map(n=>{const t=respTxt(g,n-1),n2=norm(t),dr=drivers(t).filter(k=>k!=='raca'),olhou=LENTE[n].re.test(n2);
+   return{cena:n,titulo:NOME_CENA(n),olhou,
+    peso:dr.length?`No que o grupo escreveu, pesaram ${juntar(dr.slice(0,3).map(k=>DRV[k].l))}.`:'A resposta é curta e não deixa claro o que pesou na decisão. Vale dizer qual foi o critério.',
+    cego:LENTE[n][olhou?'sim':'nao']};});
+  const lentes=porCena.filter(p=>p.olhou).length;
+  const refl=g.refl?Object.values(g.refl).join(' '):'';
+  const racaRefl=DRV.raca.re.test(norm(refl));
+  const racaCenas=[2].filter(n=>DRV.raca.re.test(norm(respTxt(g,n-1)))).length;
+  const sintese=[];
+  sintese.push(lentes===2?'Nas duas cenas vocês foram além do que veio pronto. Vale perceber o que isso exigiu do grupo e o que ainda ficou de fora, porque nenhuma resposta é a certa.':lentes===0?'Nas duas cenas as respostas seguiram o que veio pronto: a nota e a lista. É o caminho que parece mais fácil na hora e que deixa a causa fora da mesa.':`Em ${lentes} de 2 cenas vocês foram além do que veio pronto. Vale olhar o que fez o grupo aceitar o custo em uma cena e fugir dele em outra.`);
+  sintese.push(racaCenas===1?'Na cena 2, vocês nomearam raça ou gênero na resposta. Vale checar se isso virou ação concreta, e não só leitura do número.':'Na cena 2, a tabela mostrava diferenças entre pessoas negras e não negras e entre mulheres e homens, e a resposta não as nomeou. Foi a leitura pela média e pelo desempenho que deixou essa diferença fora da vista.');
+  sintese.push(racaRefl?'Na reflexão, vocês nomearam raça, gênero ou inclusão. Vale checar se essa lente apareceu também nas respostas das cenas, e não só na conversa final.':'Nas respostas da reflexão, raça, gênero e inclusão não apareceram.');
+  return{geradoEm:Date.now(),porCena,sintese,simulada:true};
+ },
+ /* contrato: recebe todos os grupos e devolve a leitura compilada da turma */
+ async analyzeRoom(groups){
+  await delay(1400);
+  const N=groups.length,cont={};Object.keys(DRV).forEach(k=>cont[k]=0);
+  groups.forEach(g=>{(g.answers||[]).forEach(a=>drivers(a.txt).forEach(k=>cont[k]++));if(g.refl)drivers(g.refl.b1).forEach(k=>cont[k]++);});
+  const rank=Object.keys(cont).map(k=>({k,l:DRV[k].l,n:cont[k]})).filter(x=>x.n>0&&x.k!=='raca').sort((a,b)=>b.n-a.n);
+  const porCena=[1,2].map(n=>({sc:n,titulo:NOME_CENA(n),olhou:groups.filter(g=>LENTE[n].re.test(norm(respTxt(g,n-1)))).length,total:groups.length}));
+  const pct=(a,b)=>b?Math.round(a/b*100):0;
+  const racaRefl=groups.filter(g=>g.refl&&DRV.raca.re.test(norm(Object.values(g.refl).join(' ')))).length;
+  const raca23=groups.filter(g=>[2].some(n=>DRV.raca.re.test(norm(respTxt(g,n-1))))).length;
+  const cegos=[];
+  cegos.push(`Na cena 1, ${porCena[0].olhou} de ${N} grupos olharam para o que estava por trás das notas (critérios, justificativas, diferenças entre equipes). Os demais tenderam a fechar a nota como veio.`);
+  cegos.push(`Na cena 2, ${porCena[1].olhou} de ${N} grupos foram além da lista pronta. ${pct(porCena[1].olhou,N)}% da turma olhou para quem ficou de fora.`);
+  cegos.push(`${raca23} de ${N} grupos nomearam raça ou gênero na resposta da cena 2, que trazia números por grupo.`);
+  cegos.push(racaRefl===0?'Nenhum grupo nomeou raça, gênero ou inclusão nas respostas da reflexão.':`${racaRefl} de ${N} grupos nomearam raça, gênero ou inclusão nas respostas da reflexão.`);
+  const trechos=[];groups.forEach(g=>{(g.answers||[]).forEach((a,i)=>{if(a.txt&&a.txt.length>25)trechos.push({rotulo:'cena '+(i+1),txt:a.txt});});if(g.refl)Object.entries(g.refl).forEach(([k,txt])=>{if(txt&&txt.length>25)trechos.push({rotulo:'reflexão, bloco '+k.slice(1),txt});});});
+  trechos.sort(()=>Math.random()-.5);
+  return{geradoEm:Date.now(),N,rank,porCena,cegos,trechos:trechos.slice(0,4),racaRefl,simulada:true};
+ }
+};
+
+/* ------------------------- APLICAÇÃO (simulação da tela dos grupos) ------------------------- */
+const app=document.getElementById('app');
+let me='simg',sess=null;
+const ui={err:'',entry:'',draft:{},draftFor:null,regd:{},busyAI:{},waitShown:null};
+const DKEY=id=>'li-ifood-rascunho-v4:'+id;
+function loadDraft(g){if(ui.draftFor===g.id)return;ui.draftFor=g.id;ui.draft={};ui.regd={};try{ui.draft=JSON.parse(localStorage.getItem(DKEY(g.id))||'{}')||{};}catch(e){ui.draft={};}}
+function setDraft(g,k,v){ui.draft[k]=v;try{localStorage.setItem(DKEY(g.id),JSON.stringify(ui.draft));}catch(e){}}
+function dropDraft(g,k){delete ui.draft[k];try{localStorage.setItem(DKEY(g.id),JSON.stringify(ui.draft));}catch(e){}}
+function nav(){}
+Store.subscribe(()=>{const s=Store.get(),g=s.groups.simg;if(g&&(g.stage==='done'||(g.stage==='reflection'&&ui.waitShown===!!(s.sessions.sim&&s.sessions.sim.reflectionOpen))))renderP();});
+
+/* ---------- participante ---------- */
+function steps(g){const st=g.stage,n=(g.answers||[]).length;
+ const at=st==='intro'?0:st==='scene'?n+1:3;
+ const labels=['Cena 1','Cena 2','Respostas'];
+ return `<div class="steps">${labels.map((l,i)=>`<span class="${i+1===at?'on':(i+1<at?'done':'')}">${l}</span>`).join('')}</div>`;}
+
+function simInit(){
+ const st=Store.get();
+ if(st.sessions.sim&&st.groups.simg)return;
+ Store.update(x=>{
+  if(!x.sessions.sim)x.sessions.sim={id:'sim',code:'SIMUL',name:'Workshop de liderança inclusiva',open:true,reflectionOpen:true,room:null,createdAt:Date.now()};
+  if(!x.groups.simg)x.groups.simg={id:'simg',sessionId:'sim',name:'Grupo simulado',stage:'intro',answers:[],refl:null,ai:null,finished:false,createdAt:Date.now(),stageAt:Date.now(),updatedAt:Date.now()};});
+}
+function renderP(){
+ simInit();const s=Store.get();sess=s.sessions.sim;const g=s.groups.simg;const st=g.stage;
+ if(st==='intro')return viewIntro(g);
+ if(st==='scene')return viewScene(g);
+ return viewDone(g);
+}
+function viewIntro(g){
+ app.innerHTML=`<div class="wrap"><div class="card"><div class="eyebrow">${esc(g.name)}</div><h1>Duas cenas, duas situações</h1>
+ <p>Vocês assumem o papel de Marcos, que lidera uma área de uma empresa fictícia, a Vetor. As duas cenas acontecem uma depois da outra e são independentes: o que vocês responderem em uma não muda a seguinte. Em cada cena, o grupo lê a situação, conversa e escreve, ou dita por voz, o que Marcos faria e por quê.</p><div class="hier"><b>Quem é quem</b><ul><li><b>Acima de Marcos:</b> a liderança sênior da empresa, que acompanha os resultados da área.</li><li><b>Marcos:</b> lidera a área e conduz as decisões das duas cenas.</li><li><b>Abaixo de Marcos:</b> as lideranças de equipe, que respondem a ele e cuidam do dia a dia das pessoas.</li><li><b>Nas equipes:</b> as pessoas que executam o trabalho e são avaliadas e reconhecidas.</li></ul></div>
+ <div class="callout"><p>Ninguém é avaliado. Nenhuma resposta é a certa, e toda saída tem um custo.</p></div>
+ <button class="btn" id="st">Começar a cena 1</button></div></div>`;
+ document.getElementById('st').onclick=()=>{Store.patch(g.id,x=>{x.stage='scene';x.stageAt=Date.now();});renderP();};
+}
+function tabelaHTML(b){
+ return `<div class="dtab solo"><div class="dscroll"><table><thead><tr>${b.cab.map(c=>`<th>${esc(c)}</th>`).join('')}</tr></thead><tbody>${b.linhas.map(r=>`<tr>${r.map((c,i)=>i?`<td class="num">${esc(c)}</td>`:`<th scope="row">${esc(c)}</th>`).join('')}</tr>`).join('')}</tbody></table></div></div>`;}
+const pf=n=>String(n.toFixed(1)).replace('.',',');
+function graficoHTML(){
+ const G=GRAFICO,W=720,H=410,x0=56,x1=690,yb=330,yt=60,max=50,Y=v=>yb-(v/max)*(yb-yt);
+ const n=G.barras.length,slot=(x1-x0)/n,bw=Math.min(112,slot*.55);
+ let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(G.titulo)}" xmlns="http://www.w3.org/2000/svg" font-family="Hanken Grotesk, system-ui, sans-serif">`;
+ [0,10,20,30,40,50].forEach(v=>{s+=`<line x1="${x0}" x2="${x1}" y1="${Y(v)}" y2="${Y(v)}" stroke="#e4d8d5"/><text x="${x0-8}" y="${Y(v)+4}" text-anchor="end" font-size="12" fill="#6f5d5a">${v}%</text>`;});
+ G.barras.forEach((b,k)=>{const cx=x0+slot*k+slot/2,tot=b.v+b.i;
+  s+=`<rect x="${cx-bw/2}" y="${Y(b.v)}" width="${bw}" height="${yb-Y(b.v)}" fill="#6f5d5a"/><rect x="${cx-bw/2}" y="${Y(tot)}" width="${bw}" height="${Y(b.v)-Y(tot)}" fill="#cfc4c1"/>`;
+  const ly=Math.abs(Y(tot)-Y(G.media))<20?Y(tot)-24:Y(tot)-8;
+  s+=`<text x="${cx}" y="${ly}" text-anchor="middle" font-size="15" font-weight="700" fill="#210000">${pf(tot)}%</text>`;
+  s+=`<text x="${cx}" y="${yb+22}" text-anchor="middle" font-size="14" fill="#210000">${esc(b.n)}</text><text x="${cx}" y="${yb+40}" text-anchor="middle" font-size="11.5" fill="#6f5d5a">vol. ${pf(b.v)} · invol. ${pf(b.i)}</text>`;});
+ s+=`<line x1="${x0}" x2="${x1}" y1="${Y(G.media)}" y2="${Y(G.media)}" stroke="#210000" stroke-dasharray="6 5" stroke-width="1.3"/><text x="${x1}" y="${Y(G.media)-6}" text-anchor="end" font-size="12" fill="#210000">Média da área ${pf(G.media)}%</text>`;
+ s+=`<rect x="${x0}" y="${H-26}" width="12" height="12" fill="#6f5d5a"/><text x="${x0+18}" y="${H-16}" font-size="12.5" fill="#210000">Voluntário</text><rect x="${x0+110}" y="${H-26}" width="12" height="12" fill="#cfc4c1"/><text x="${x0+128}" y="${H-16}" font-size="12.5" fill="#210000">Involuntário</text></svg>`;
+ return `<div class="chartbox"><h3>${esc(G.titulo)}</h3><p class="small muted">${esc(G.sub)}</p>${s}</div>`;}
+function blocoHTML(b){
+ if(b.tipo==='p')return `<p>${esc(b.t)}</p>`;
+ if(b.tipo==='ul')return `<ul class="lista">${b.itens.map(i=>`<li>${esc(i)}</li>`).join('')}</ul>`;
+ if(b.tipo==='tabela')return tabelaHTML(b);
+ if(b.tipo==='grafico')return graficoHTML();
+ return '';}
+const VOZ={ok:!!(window.SpeechRecognition||window.webkitSpeechRecognition),rec:null,ativo:null,btn:null,
+ parar(){if(this.rec){try{this.rec.onend=null;this.rec.stop();}catch(e){}}this.rec=null;if(this.btn){this.btn.textContent='Ditar por voz (opcional)';this.btn.setAttribute('aria-pressed','false');this.btn.classList.remove('rec');}
+  document.querySelectorAll('.vst').forEach(s=>s.textContent='');this.ativo=null;this.btn=null;},
+ iniciar(i,ta,st,btn,onTxt){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;const r=new SR();r.lang='pt-BR';r.continuous=true;r.interimResults=true;
+  let base=ta.value;const sep=()=>base&&!/\s$/.test(base)?' ':'';
+  r.onresult=e=>{let fin='',tmp='';for(let k=e.resultIndex;k<e.results.length;k++){const t=e.results[k][0].transcript;if(e.results[k].isFinal)fin+=t;else tmp+=t;}
+   if(fin){base=base+sep()+fin.trim();}ta.value=base+(tmp?sep()+tmp:'');onTxt(ta.value);};
+  ta.oninput=()=>{base=ta.value;onTxt(ta.value);};
+  r.onerror=e=>{st.textContent=e.error==='not-allowed'||e.error==='service-not-allowed'?'Permitam o uso do microfone no navegador para ditar.':'Não foi possível ouvir. Tentem de novo.';if(e.error==='not-allowed'||e.error==='service-not-allowed')this.parar();};
+  r.onend=()=>{if(this.rec===r){try{r.start();}catch(e){this.parar();}}};
+  this.rec=r;this.ativo=i;this.btn=btn;btn.textContent='Parar ditado';btn.setAttribute('aria-pressed','true');btn.classList.add('rec');st.textContent='Ouvindo. Falem a resposta do grupo.';
+  try{r.start();}catch(e){this.parar();}}};
+/* campo de escrita livre com ditado opcional; devolve o HTML do campo */
+function campoHTML(i,val,ph){
+ return `<textarea id="ta${i}" data-k="${i}" placeholder="${esc(ph)}">${esc(val)}</textarea>
+ ${VOZ.ok?`<div class="ditar"><button type="button" class="btn ghost sm mic" data-k="${i}" aria-pressed="false">Ditar por voz (opcional)</button><span class="small muted vst" id="vs${i}"></span></div>`:`<p class="small muted" style="margin-top:6px">Ditado por voz indisponível neste navegador. Escrevam a resposta, ou usem o Chrome ou o Edge para ditar.</p>`}`;}
+function ligarCampo(g,onChange){
+ VOZ.parar();
+ app.querySelectorAll('textarea[data-k]').forEach(t=>t.addEventListener('input',()=>{setDraft(g,t.dataset.k,t.value);if(onChange)onChange(t.dataset.k);}));
+ app.querySelectorAll('.mic').forEach(m=>m.onclick=()=>{const k=m.dataset.k,ta=document.getElementById('ta'+k),st=document.getElementById('vs'+k);
+  if(VOZ.ativo===k){VOZ.parar();return;}
+  VOZ.parar();VOZ.iniciar(k,ta,st,m,txt=>{setDraft(g,k,txt);if(onChange)onChange(k);});});}
+function viewScene(g){
+ loadDraft(g);
+ const n=(g.answers||[]).length+1,c=cena(n),k='s'+n;
+ app.innerHTML=`<div class="wrap">${steps(g)}
+ <div class="card"><div class="eyebrow">${esc(g.name)} · cena ${n} de 2</div><h1>${esc(c.titulo.split(' · ')[1])}</h1>
+ <div class="scene-text" style="margin-top:14px">${c.blocos.map(blocoHTML).join('')}</div></div>
+ <div class="card"><h2>${esc(PERGUNTA)}</h2><p class="muted small">Conversem em grupo e escrevam o que Marcos faz e por quê. Se preferirem, ditem a resposta por voz.</p>
+ ${campoHTML(k,ui.draft[k]||'','Escrevam aqui a resposta do grupo')}
+ <div class="err" id="er">${esc(ui.err)}</div>
+ <div class="row" style="margin-top:8px"><button class="btn" id="ok">${n<2?'Registrar resposta e ir para a cena '+(n+1):'Registrar resposta e ver as respostas do grupo'}</button><span class="small muted">Depois de registrar, não é possível voltar à cena.</span></div></div></div>`;
+ ligarCampo(g);
+ document.getElementById('ok').onclick=()=>{VOZ.parar();const v=(ui.draft[k]||'').trim();
+  if(v.length<8){ui.err='Escrevam ou ditem a resposta do grupo antes de seguir.';return viewScene(g);}
+  ui.err='';Store.patch(g.id,x=>{x.answers=x.answers||[];x.answers.push({txt:v,ts:Date.now()});x.stage=n<2?'scene':'done';if(n===2)x.finished=true;x.stageAt=Date.now();});dropDraft(g,k);window.scrollTo(0,0);renderP();};
+}
+function viewRefl(g){
+ loadDraft(g);
+ const aberto=!!sess.reflectionOpen;ui.waitShown=!aberto;
+ if(!aberto){
+  app.innerHTML=`<div class="wrap">${steps(g)}<div class="card dark"><div class="eyebrow">${esc(g.name)} · cenas concluídas</div><h2>Aguardem a facilitação</h2><p>Vocês responderam as duas cenas. Antes da reflexão final, a facilitação faz uma conversa com a turma. Esta tela libera sozinha quando ela avançar.</p><span class="spinner"></span><span class="small">aguardando a liberação</span></div></div>`;
+  return;}
+ const ok=i=>ui.regd[i];
+ app.innerHTML=`<div class="wrap">${steps(g)}
+ <div class="card"><div class="eyebrow">${esc(g.name)} · reflexão final</div><h1>Quatro blocos de perguntas</h1>
+ <div class="callout"><p>Falamos de padrões inconscientes, que acontecem com todas as pessoas e sem má intenção. Não se trata de culpa.</p></div>
+ <p class="muted small">Conversem em grupo e registrem uma resposta por bloco. Escrever ou ditar por voz.</p></div>
+ ${REFLEXAO.map((b,i)=>`<div class="bloco"><div class="n">BLOCO ${i+1}</div><h2>${esc(b.t)}</h2>
+  ${b.qs.map(q=>`<p class="q">${esc(q)}</p>`).join('')}
+  ${campoHTML('b'+i,ui.draft['b'+i]||'','Escrevam aqui a resposta do grupo')}
+  <div class="ditar"><button type="button" class="btn sm reg" data-i="${i}">${ok(i)?'Atualizar resposta':'Registrar resposta'}</button><span class="small muted" id="rg${i}">${ok(i)?'Resposta registrada.':''}</span></div></div>`).join('')}
+ <div class="err" id="er">${esc(ui.err)}</div><p class="small muted">Registrem cada bloco. Quando os quatro estiverem prontos, enviem as respostas do grupo.</p><button class="btn" id="sb">Enviar respostas do grupo</button></div>`;
+ ligarCampo(g,k=>{const i=+k.slice(1);if(ui.regd[i]){ui.regd[i]=false;const m=app.querySelector('.reg[data-i="'+i+'"]');if(m)m.textContent='Registrar resposta';const s=document.getElementById('rg'+i);if(s)s.textContent='';}});
+ app.querySelectorAll('.reg').forEach(m=>m.onclick=()=>{const i=+m.dataset.i,ta=document.getElementById('tab'+i)||document.getElementById('tab'+i),s=document.getElementById('rg'+i);
+  VOZ.parar();const v=(ui.draft['b'+i]||'');
+  if(v.trim().length<8){s.textContent='Escrevam ou ditem um pouco mais antes de registrar.';return;}
+  ui.regd[i]=true;m.textContent='Atualizar resposta';s.textContent='Resposta registrada.';});
+ document.getElementById('sb').onclick=()=>{VOZ.parar();const v=REFLEXAO.map((_,i)=>(ui.draft['b'+i]||'').trim());
+  if(v.some(t=>t.length<8)){ui.err='Registrem uma resposta em cada um dos quatro blocos.';return viewRefl(g);}
+  const r={b1:v[0],b2:v[1],b3:v[2],b4:v[3]};ui.err='';
+  Store.patch(g.id,x=>{x.refl=r;x.stage='done';x.finished=true;x.stageAt=Date.now();});window.scrollTo(0,0);renderP();};
+}
+
+/* ---------- PDF das respostas (gerado no navegador, sem dependências) ---------- */
+const PDF={
+ W:595,H:842,M:56,
+ medir(txt,size,bold){if(!this._c){try{this._c=document.createElement('canvas').getContext('2d');}catch(e){this._c=null;}}
+  if(!this._c)return txt.length*size*.52;this._c.font=(bold?'bold ':'')+'100px Helvetica, Arial, sans-serif';return this._c.measureText(txt).width/100*size;},
+ byte(c){const sp={0x2018:0x91,0x2019:0x92,0x201C:0x93,0x201D:0x94,0x2013:0x96,0x2014:0x97,0x2022:0x95,0x2026:0x85};
+  if(sp[c])return sp[c];if(c<128||(c>=160&&c<=255))return c;return 63;},
+ esc(t){let o='';for(const ch of t){const b=this.byte(ch.codePointAt(0));
+   if(b===40||b===41||b===92)o+='\\'+String.fromCharCode(b);else if(b<32||b>126)o+='\\'+('00'+b.toString(8)).slice(-3);else o+=String.fromCharCode(b);}return o;},
+ quebrar(texto,size,bold,larg){const out=[];
+  String(texto).split(/\n/).forEach(par=>{if(!par.trim()){out.push('');return;}
+   let lin='';par.split(/\s+/).filter(Boolean).forEach(w=>{
+    let cand=lin?lin+' '+w:w;
+    if(this.medir(cand,size,bold)<=larg){lin=cand;return;}
+    if(lin)out.push(lin);
+    while(this.medir(w,size,bold)>larg){let k=w.length;while(k>1&&this.medir(w.slice(0,k),size,bold)>larg)k--;out.push(w.slice(0,k));w=w.slice(k);}
+    lin=w;});
+   if(lin)out.push(lin);});
+  return out;},
+ /* itens: [{t,size,bold,antes,depois}] */
+ montar(itens){const larg=this.W-2*this.M,pages=[];let c='',y=this.H-this.M;
+  const nova=()=>{if(c)pages.push(c);c='';y=this.H-this.M;};
+  itens.forEach(it=>{const lead=it.size*1.4;y-=it.antes||0;
+   this.quebrar(it.t,it.size,it.bold,larg).forEach(l=>{if(y-lead<this.M)nova();y-=lead;
+    if(l)c+=`BT /${it.bold?'F2':'F1'} ${it.size} Tf ${this.M} ${y.toFixed(1)} Td (${this.esc(l)}) Tj ET\n`;});
+   y-=it.depois||0;});
+  if(c||!pages.length)pages.push(c);return pages;},
+ arquivo(pages){const o=[];o[1]='<< /Type /Catalog /Pages 2 0 R >>';
+  o[2]=`<< /Type /Pages /Kids [${pages.map((_,i)=>`${5+i*2} 0 R`).join(' ')}] /Count ${pages.length} >>`;
+  o[3]='<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>';
+  o[4]='<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>';
+  pages.forEach((c,i)=>{const p=5+i*2;o[p]=`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${this.W} ${this.H}] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents ${p+1} 0 R >>`;o[p+1]=`<< /Length ${c.length} >>\nstream\n${c}\nendstream`;});
+  let out='%PDF-1.4\n';const off=[];
+  for(let i=1;i<o.length;i++){off[i]=out.length;out+=`${i} 0 obj\n${o[i]}\nendobj\n`;}
+  const x=out.length;out+=`xref\n0 ${o.length}\n0000000000 65535 f \n`+off.slice(1).map(v=>String(v).padStart(10,'0')+' 00000 n \n').join('')+`trailer\n<< /Size ${o.length} /Root 1 0 R >>\nstartxref\n${x}\n%%EOF`;
+  return out;}
+};
+function respostasItens(g,sessNome){
+ const data=new Date().toLocaleDateString('pt-BR');
+ const it=[{t:'Liderança inclusiva e resultado',size:18,bold:true,depois:4},{t:'Respostas do grupo',size:13,bold:false,depois:4},
+  {t:`Grupo: ${g.name}   |   Sessão: ${sessNome}   |   ${data}`,size:10,bold:false,depois:14}];
+ [1,2].forEach(n=>{it.push({t:NOME_CENA(n),size:13,bold:true,antes:10,depois:3});
+  it.push({t:'O que você, no lugar de Marcos, faria?',size:10,bold:false,depois:3});
+  it.push({t:respTxt(g,n-1)||'(sem resposta)',size:11,bold:false,depois:6});});
+ return it;}
+function baixarPDF(g,sessNome){
+ const pdf=PDF.arquivo(PDF.montar(respostasItens(g,sessNome)));
+ const bytes=new Uint8Array(pdf.length);for(let i=0;i<pdf.length;i++)bytes[i]=pdf.charCodeAt(i)&255;
+ const blob=new Blob([bytes],{type:'application/pdf'});const a=document.createElement('a');
+ const slug=norm(g.name).replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'grupo';
+ a.href=URL.createObjectURL(blob);a.download='respostas-'+slug+'.pdf';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);}
+
+function respostasHTML(g){
+ return `${[1,2].map(n=>`<div class="bloco"><div class="n">${esc(NOME_CENA(n).toUpperCase())}</div><p class="resp">${esc(respTxt(g,n-1)||'(sem resposta)')}</p></div>`).join('')}
+`;}
+function aiHTML(a){
+ return `<div class="card"><div class="eyebrow">Leitura por cena</div><h2>O que pesou e o que pode não estar à vista</h2>
+ ${a.porCena.map(p=>`<div class="bloco"><div class="n">CENA ${p.cena}</div><h3>${esc(p.titulo.split(' · ')[1])}</h3><p><b>O que pesou.</b> ${esc(p.peso)}</p><p>${esc(p.cego)}</p></div>`).join('')}</div>
+ <div class="card dark"><h2>Em síntese</h2>${a.sintese.map(t=>`<p>${esc(t)}</p>`).join('')}</div>`+dadosHTML();
+}
+function textoRespostas(g,sessNome){
+ const data=new Date().toLocaleDateString('pt-BR');
+ return ['Liderança inclusiva e resultado','Respostas do grupo','Grupo: '+g.name+' | Sessão: '+sessNome+' | '+data,''].concat([1,2].map(n=>NOME_CENA(n)+'\n'+PERGUNTA+'\n'+(respTxt(g,n-1)||'(sem resposta)')+'\n')).join('\n');}
+function baixarTXT(g,sessNome){
+ const blob=new Blob(['﻿'+textoRespostas(g,sessNome)],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');
+ const slug=norm(g.name).replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'grupo';
+ a.href=URL.createObjectURL(blob);a.download='respostas-'+slug+'.txt';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);}
+function viewDone(g){
+ const sn=sess?sess.name:'';
+ app.innerHTML=`<div class="wrap">${steps(g)}
+ <div class="card destaque"><div class="eyebrow" style="color:var(--amber)">${esc(g.name)} · cenas concluídas</div><h1>Respostas do grupo</h1>
+  <p>Aqui está tudo o que o grupo escreveu nas duas cenas. Baixem o arquivo para guardar.</p>
+  <div class="row"><button class="btn amb big" id="pdf">Baixar em PDF</button><button class="btn amb big" id="txt">Baixar em TXT</button></div></div>
+ <h2 style="margin:22px 0 10px">O que o grupo respondeu</h2>${respostasHTML(g)}</div>`;
+ document.getElementById('pdf').onclick=()=>baixarPDF(g,sn);
+ document.getElementById('txt').onclick=()=>baixarTXT(g,sn);
+}
+
+/* ---------- reinício opcional: abrir o arquivo com #reiniciar no fim do endereço ---------- */
+if(location.hash==='#reiniciar'){Store.reset();try{localStorage.removeItem('li-ifood-rascunho-v4:simg');}catch(e){}history.replaceState(null,'',location.pathname+location.search);}
+simInit();
+renderP();
+</script>
+</body>
+</html>
